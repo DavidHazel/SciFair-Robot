@@ -11,17 +11,7 @@ var countrobot = 1;
 
 var matrixsize =10;
 
-var testes_bucket = [	"x_green", 
-						"x_green",
-						"x_green",
-						"x_green",
-						"x_green",
-						"y_naked",
-						"y_naked",
-						"y_naked",
-						"y_naked",
-						"y_naked"
-					]
+
 
 function getRandom(a){
 	return Math.round(Math.random()*(a-1));
@@ -54,6 +44,24 @@ function buildMatrix(){
 	}
 	return array;
 }
+
+function onLoad(){
+	var resultsButton = document.getElementById('runExperiments');
+	resultsButton.onclick = runSimulation;
+}
+
+/*
+ ResultDivID = the ID of the div you want to place your results value inside of
+ val = the value you want to display
+*/
+function updateResultsValue(ResultDivID, val) {
+	var results = document.getElementById(ResultDivID);
+	results.innerHTML = val;
+}
+
+
+
+//************** OLD CODE FROM GENETICS EPERIMETN **************************************\
 
 /*
 Rerun all calculations, we do this becasue we have limited inputs and its easier just to recalc the page
@@ -134,20 +142,6 @@ function updateResults(results){
 	}
 	//update the results window pane
 
-}
-
-function onLoad(){
-	var resultsButton = document.getElementById('runExperiments');
-	resultsButton.onclick = runSimulation;
-}
-
-/*
- ResultDivID = the ID of the div you want to place your results value inside of
- val = the value you want to display
-*/
-function updateResultsValue(ResultDivID, val) {
-	var results = document.getElementById(ResultDivID);
-	results.innerHTML = val;
 }
 
 
