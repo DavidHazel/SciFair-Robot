@@ -1,0 +1,67 @@
+﻿
+
+<html>
+<head>
+    <title>Genetic Experiments</title>
+    <link rel="stylesheet" type="text/css" href="experiments.css">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="experiments.js"></script>
+</head>
+<body onload="onLoad();" >
+
+	 <h2>Genetic Experiments</h2>
+  
+	
+<div id="new">
+<div class="inputs">
+	<div class="line-item">
+		
+		<label for=MatrixSize> Matrix Size</label>
+		<input id="MatrixSize">
+		We are only using squares, so single number (i.e. 6 means a 6x6 matrix)
+
+	</div>
+	<div class="line-item">
+		
+		<label for=FattyAcidCount> Fatty Acid Count</label>
+		<input id="FattyAcidCount">
+		how many fatty acids to put in the matrix
+
+	</div>
+</div>
+
+
+<div id="results-wrapper">
+<div id="runExperiments" class="button-blue">Run Experiments </div>
+
+	<div class="line-item">
+		<label> Experiments Summary </label>
+		<div class="result" id="Results"> Results </div>
+			
+	</div>
+	<div class="line-item">
+		<label> Experiments Details </label>
+		<div class="result" id="ExperimentLog"> &nbsp; </div>
+			
+	</div>
+
+<div>Source code is available on <a href="https://github.com/hazelconsulting/SciFair-Genetic">GitHub</a> </div>
+</div>
+	
+
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-214117-39', 'hazelconsulting.com');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+  
+</html>
