@@ -4,7 +4,7 @@
 
 
 
-//
+
 
 var countfattyacid = 2; //does amont of fatty acid
 var countrobot = 1; //does amont of robot
@@ -19,16 +19,18 @@ function getRandom(a){
 }
 //runs program
 function runSimulation(){
+
+
+
+
 	var m = buildMatrix();
 	insertRandomFattyAcid(m);
-
-
 	
-	
-	//insertRobot(m);
 
-
-
+	for( i = 0; i < 100; i++){
+		//console.log(getRandom(matrixsize));
+			searchRobot(m);
+	}
 
 	//var m = new Array(matrixsize, matrixsize);
 //var m = matrix[matrixsize][matrixsize];
@@ -43,15 +45,18 @@ function insertRandomFattyAcid(m){
 }
 
 
+/*
+has the robot search to find fatty acid
+*/
 
+function searchRobot(m){
 
-function insertRobot(m){
-	if(matrixsize)       var m[m] == F
-
-
-
-	m[getRandom(matrixsize)] = 'R';
-
+	//random move in matrix
+	loc = getRandom(matrixsize);
+	console.log(loc);
+	if(m[loc] == 'f'){
+		console.log('found fatty acid:' + loc)
+	}
 
 }
 
