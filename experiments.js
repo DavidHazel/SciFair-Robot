@@ -4,28 +4,37 @@
 
 
 
+//
+
+var countfattyacid = 2; //does amont of fatty acid
+var countrobot = 1; //does amont of robot
+
+var matrixsize =10; //tells the size of the matrix 
 
 
-var countfattyacid = 2;
-var countrobot = 1;
-
-var matrixsize =10;
-
-
-
+//gets random number 0-matrix size
 function getRandom(a){
 	return Math.round(Math.random()*(a-1));
 
 }
-
+//runs program
 function runSimulation(){
 	var m = buildMatrix();
 	insertRandomFattyAcid(m);
+
+
+	
+	
+	//insertRobot(m);
+
+
+
+
 	//var m = new Array(matrixsize, matrixsize);
 //var m = matrix[matrixsize][matrixsize];
-console.log(m);
+//console.log(m);
 }
-
+//puts in fatty acid
 function insertRandomFattyAcid(m){
 
 	m[getRandom(matrixsize)] = 'f';
@@ -36,7 +45,19 @@ function insertRandomFattyAcid(m){
 
 
 
+function insertRobot(m){
+	if(matrixsize)       var m[m] == F
 
+
+
+	m[getRandom(matrixsize)] = 'R';
+
+
+}
+
+
+
+//makes matrix
 function buildMatrix(){
 	var array = new Array(matrixsize);
 	for (var i = 0; i < matrixsize; i++) {
@@ -45,15 +66,23 @@ function buildMatrix(){
 	return array;
 }
 
+
+
+//tells instructions to load page
 function onLoad(){
 	var resultsButton = document.getElementById('runExperiments');
 	resultsButton.onclick = runSimulation;
 }
 
+
+
+
 /*
  ResultDivID = the ID of the div you want to place your results value inside of
  val = the value you want to display
-*/
+*/      
+
+
 function updateResultsValue(ResultDivID, val) {
 	var results = document.getElementById(ResultDivID);
 	results.innerHTML = val;
