@@ -4,9 +4,7 @@
 
 
 
-
-
-var countfattyacid = 2; //does amont of fatty acid
+var countfattyacid = 20; //does amont of fatty acid
 var countrobot = 1; //does amont of robot
 
 var matrixsize =10; //tells the size of the matrix 
@@ -23,18 +21,30 @@ function runSimulation(){
 
 
 
-	var m = buildMatrix();
+	var m = buildMatrix(matrixsize);
 	insertRandomFattyAcid(m);
 	
 
-	for( i = 0; i < 100; i++){
-		//console.log(getRandom(matrixsize));
-			searchRobot(m);
-	}
+	
+		console.log(m);
+			//searchRobot(m);
+	
 
 	//var m = new Array(matrixsize, matrixsize);
-//var m = matrix[matrixsize][matrixsize];
-//console.log(m);
+
+}
+
+
+function build2DArray(matrixsize){
+
+	var array = [];
+	for( i = 0; i < matrixsize; i++){
+		for( j = 0; j < matrixsize; j++){
+			array[i][j] = 0;
+		}
+		//console.log(getRandom(matrixsize));
+		
+	}
 }
 //puts in fatty acid
 function insertRandomFattyAcid(m){
@@ -63,14 +73,23 @@ function searchRobot(m){
 
 
 //makes matrix
-function buildMatrix(){
-	var array = new Array(matrixsize);
-	for (var i = 0; i < matrixsize; i++) {
-		array[i] = getRandom(matrixsize);
-	}
-	return array;
-}
+/*
+outer:loops 10 times to create a grid's rows.
+inner:loops 10 times to create a grid's colums.
+*/
+function buildMatrix(size){
 
+matrix = new Array(size)
+for(i = 0;i<size;i++){
+  matrix[i] = new Array(size);
+  for(j = 0;j<size;j++){
+    matrix[i][j] = 0;
+  }
+}
+console.log(matrix);
+return matrix;
+
+}
 
 
 //tells instructions to load page
@@ -178,7 +197,17 @@ function updateResults(results){
 
 }
 
+/*
+size = 10
 
+var x = new Array(size);
+for (var i = 0; i < size; i++) {
+  x[i] = new Array(size);
+  for(var k = 0; k<size; k++){
+      x[i][k] = 0;
+  }
+}
+*/
 
 
 
