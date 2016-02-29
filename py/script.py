@@ -1,4 +1,5 @@
-#from prettytable import PrettyTable
+#Author: David hazel
+#Purpose: test example for Johns Science Fair experiment
 import random
 
 

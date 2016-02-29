@@ -4,10 +4,10 @@
 
 
 
-var countfattyacid = 20; //does amont of fatty acid
+var countfattyacid = 1; //does amont of fatty acid
 var countrobot = 1; //does amont of robot
 
-var matrixsize =10; //tells the size of the matrix 
+var matrixsize = 3; //tells the size of the matrix 
 
 
 //gets random number 0-matrix size
@@ -17,56 +17,54 @@ function getRandom(a){
 }
 //runs program
 function runSimulation(){
-
-
-
-
 	var m = buildMatrix(matrixsize);
 	insertRandomFattyAcid(m);
-	
-
-	
-		console.log(m);
-			//searchRobot(m);
-	
-
+	printMatrix(matrix);
+	//console.log(m);
+	found = false;
+	while (found == false){
+		found = searchRobot(m);
+	}	
 	//var m = new Array(matrixsize, matrixsize);
 
 }
 
 
-function build2DArray(matrixsize){
-
-	var array = [];
-	for( i = 0; i < matrixsize; i++){
-		for( j = 0; j < matrixsize; j++){
-			array[i][j] = 0;
-		}
-		//console.log(getRandom(matrixsize));
-		
-	}
-}
 //puts in fatty acid
 function insertRandomFattyAcid(m){
+	x = getRandom(matrixsize);
+	y = getRandom(matrixsize);
 
-	m[getRandom(matrixsize)] = 'f';
+	m[x][y] = 'f';
 
 
 }
 
+function printMatrix(matrix){
+	for (i = 0;i<matrixsize;i++){
+		console.log(matrix[i])
+
+	}
+}
 
 /*
 has the robot search to find fatty acid
 */
 
 function searchRobot(m){
-
+	var found = false;
+	cnt = 0;
 	//random move in matrix
-	loc = getRandom(matrixsize);
-	console.log(loc);
-	if(m[loc] == 'f'){
-		console.log('found fatty acid:' + loc)
-	}
+	x = getRandom(matrixsize);
+	y = getRandom(matrixsize);
+	
+		if(m[x][y] == 'f'){
+			cnt = cnt + 1;
+			found = true;
+			console.log('found fatty acid:' + x + ','+ y)
+		}
+		console.log(cnt);
+		return found;
 
 }
 
@@ -79,15 +77,15 @@ inner:loops 10 times to create a grid's colums.
 */
 function buildMatrix(size){
 
-matrix = new Array(size)
-for(i = 0;i<size;i++){
-  matrix[i] = new Array(size);
-  for(j = 0;j<size;j++){
-    matrix[i][j] = 0;
-  }
-}
-console.log(matrix);
-return matrix;
+	matrix = new Array(size)
+	for(i = 0;i<size;i++){
+	  matrix[i] = new Array(size);
+	  for(j = 0;j<size;j++){
+	    matrix[i][j] = 0;
+	  }
+	}
+	//console.log(matrix);
+	return matrix;
 
 }
 
