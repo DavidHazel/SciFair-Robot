@@ -1,0 +1,9 @@
+[submodule "DOM-Builder"]
+	path = DOM-Builder
+	url = https://github.com/Daniel-Hug/DOM-Builder
+[submodule "observable-array"]
+	path = observable-array
+	url = https://github.com/Daniel-Hug/observable-array
+[submodule "snoopy"]
+	path = snoopy
+	url = https://github.com/Daniel-Hug/snoopy
