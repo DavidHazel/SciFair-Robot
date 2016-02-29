@@ -59,6 +59,10 @@ extend(Matrix.prototype, Snoopy.prototype);
 
 //puts in fatty acid
 Matrix.prototype.insertRandomFattyAcids = function insertRandomFattyAcids(numToInsert){
+	// reset each cell to be a non-fatty-acid first
+	this.cells.forEach(function(cell) {
+		cell.set('fattyAcid', false);
+	});
 
 	// pick a random unique cell from the matrix numToInsert times
 	// call insertFattyAcid for each picked cell

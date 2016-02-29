@@ -118,3 +118,7 @@ text-align: right;
     background: #e7e7e7;
     box-sizing: border-box;
 }
+
+.cell-parent li.fatty-acid {
+    background: #f00;
+}
