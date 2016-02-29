@@ -8,6 +8,7 @@ var getMatrixSize = (function() {
 	// update matrix size whenever input changes
 	matrixSizeInput.addEventListener('input', function setMatrixSize() {
 		// change matrix size
+		m.set('size', getMatrixSize());
 	});
 
 	return function() {
@@ -23,7 +24,7 @@ var getFattyAcidCount = (function() {
 	var fattyAcidCountInput = document.getElementById('FattyAcidCount');
 
 	// update fatty acid count whenever input changes
-	fattyAcidCountInput.addEventListener('input', setFattyAcidCount);
+	fattyAcidCountInput.addEventListener('input', updateFattyAcidCount);
 
 	return function() {
 		// get the value, convert to a base 10 number
@@ -42,12 +43,12 @@ var m = new Matrix(initialSize);
 
 
 // set fatty acid count now and whenever input changes
-function setFattyAcidCount() {
-	// change fatty acid count
+function updateFattyAcidCount() {
+	// update fatty acid count
 	m.insertRandomFattyAcids(getFattyAcidCount());
 }
 
-setFattyAcidCount();
+updateFattyAcidCount();
 
 
 

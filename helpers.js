@@ -59,3 +59,21 @@ function loopRandom(collection, callback, cap) {
 		untouched.splice(randomI, 1);
 	}
 }
+
+// ensures the passed array is `len` long by appending new items or trimming extras
+// `val` determines what will be pushed. It can be a function that returns a value or a value
+function setLength(arr, len, val) {
+	var arr, i;
+	var lenDiff = len - arr.length;
+
+	// array needs to be longer
+	if (lenDiff > 0) {
+		var itemsToAdd = fillArray(lenDiff, val);
+		arr.push.apply(arr, itemsToAdd);
+	}
+
+	// array needs to be shorter
+	else if (lenDiff < 0) {
+		arr.splice(len);
+	}
+}

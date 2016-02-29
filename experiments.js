@@ -26,26 +26,29 @@ function searchRobot(m){
 }
 
 
-
-//makes matrix
-/*
-outer:loops 10 times to create a grid's rows.
-inner:loops 10 times to create a grid's colums.
-*/
-
+function createCell() {
+	// make each cell object observable (an instance of the Snoopy constructor)
+	return new Snoopy({ fattyAcid: false });
+}
 
 
 // Matrix constructor
 function Matrix(size) {
+	var thisMatrixInstance = this;
 	this.snoopers = {};
 	this.size = size;
-	var cells = fillArray(size * size, function() {
-		// make each cell object observable (an instance of the Snoopy constructor)
-		return new Snoopy({ fattyAcid: false });
-	});
+	var cells = fillArray(size * size, createCell);
 
 	// make the array observable so that changes can be observed
 	this.cells = new ObservableArray(cells);
+
+	this.snoop('size', function(size) {
+		// fill this.cells with new cell objects
+		setLength(thisMatrixInstance.cells, size*size, createCell);
+
+		// inset fatty acids
+		thisMatrixInstance.insertRandomFattyAcids(getFattyAcidCount());
+	});
 }
 
 
