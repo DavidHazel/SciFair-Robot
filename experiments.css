@@ -10,15 +10,10 @@ body {
 
 
 #runExperiments{
-
 	border:solid 1px grey;
-
-
-	
-	width: 150px;
 	clear:both;
 }
-#runExperiments:hover{
+button {
 	cursor: pointer;
 }
 #2results{

@@ -3,18 +3,6 @@
 
 
 /*
-	don't do anything upon form submit (the form is for input validation)
-*/
-
-var configForm = document.getElementById('MatrixSize');
-configForm.addEventListener('submit', function handleConfigFormSubmit(event) {
-	event.preventDefault();
-});
-
-
-
-
-/*
 	"matrix size" input
 */
 
@@ -77,6 +65,16 @@ var m = new Matrix({
 
 
 
+/*
+	input validation
+*/
+
+// don't do anything upon form submit (the form is for validation by the browser)
+var configForm = document.getElementById('MatrixSize');
+configForm.addEventListener('submit', function handleConfigFormSubmit(event) {
+	event.preventDefault();
+});
+
 // keep the max attribute on the "fatty acid count" input updated to be size*size
 dom({
 	el: fattyAcidCountInput,
@@ -97,27 +95,33 @@ dom({
 
 
 
-// set fatty acid count now and whenever input changes
-function updateFattyAcidCount() {
-	// update fatty acid count
-	m.insertRandomFattyAcids();
+/*
+	Search for fatty acids
+*/
+
+// hook up "run experiments" button
+var resultsButton = document.getElementById('runExperiments');
+resultsButton.addEventListener('click', runSimulation);
+
+//runs program
+function runSimulation(){
+	// search for fatty acids
 }
 
 
 
 
+/*
+	Shuffle fatty acids
+*/
+
+// hook up "run experiments" button
+var shuffleButton = document.getElementById('shuffle');
+shuffleButton.addEventListener('click', shuffleFattyAcids);
+
 //runs program
-function runSimulation(){
-	// m is a 2d array filled with zeros
-
-	
-
-		console.log(m);
-			//searchRobot(m);
-	
-
-	//var m = new Array(matrixsize, matrixsize);
-
+function shuffleFattyAcids(){
+	m.insertRandomFattyAcids();
 }
 
 
@@ -147,16 +151,3 @@ function renderCell(cell) {
 	// render and append new cells when they're pushed to m.cells
 	m.cells.addDomObserver(cellParent, renderCell);
 })();
-
-
-
-
-
-
-/*
-	set up events
-*/
-
-// hook up "run experiments" button
-var resultsButton = document.getElementById('runExperiments');
-resultsButton.addEventListener('click', runSimulation);
