@@ -89,3 +89,36 @@ text-align: right;
     margin-top: 2px;
     padding: 5px 16px 4px;
 }
+
+
+
+
+
+/*
+    cell styles
+*/
+
+.cell-parent {
+    padding: 0;
+    list-style: none;
+    border: 2px inset #ccc;
+    overflow: hidden;
+}
+
+
+/* LIs are cells */
+.cell-parent li {
+    width: 24px;
+    height: 24px;
+    float: left;
+    border: 2px outset #ccc;
+    text-align: center;
+    line-height: 22px;
+    cursor: default;
+    background: #e7e7e7;
+    box-sizing: border-box;
+}
+
+.cell-parent li.fatty-acid {
+    background: #f00;
+}
