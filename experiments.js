@@ -1,35 +1,27 @@
 /**
- JS file to calculate the experiments results.
+	core program logic
 */
 
 
 
-var countfattyacid = 20; //does amont of fatty acid
-var countrobot = 1; //does amont of robot
+// Cell constructor
+function Cell() {
+	// make `new` keyword optional
+	if (!(this instanceof Cell)) return new Cell();
 
-var matrixsize =10; //tells the size of the matrix 
+	// for Snoopy
+	this.snoopers = {};
 
-
-/*
-has the robot search to find fatty acid
-*/
-
-function searchRobot(m){
-
-	//random move in matrix
-	loc = getRandom(matrixsize);
-	console.log(loc);
-	if(m[loc] == 'f'){
-		console.log('found fatty acid:' + loc)
-	}
-
+	// initial cell config
+	this.fattyAcid = false;
+	this.searching = false;
 }
 
 
-function createCell() {
-	// make each cell object observable (an instance of the Snoopy constructor)
-	return new Snoopy({ fattyAcid: false });
-}
+// make each Cell object observable
+extend(Cell.prototype, Snoopy.prototype);
+
+
 
 
 // Matrix constructor
@@ -41,8 +33,11 @@ function Matrix(config) {
 	this.size = config.size;
 	this.fattyAcidCount = config.fattyAcidCount;
 
+	// set up search attempts observable array with a prefilled instance of SearchAttempts()
+	this.searchAttemptsLog = new ObservableArray([SearchAttempts()]);
+
 	// setup array of cells
-	var cells = fillArray(this.size * this.size, createCell);
+	var cells = fillArray(this.size * this.size, Cell);
 
 	// make the array observable so that changes can be observed
 	this.cells = new ObservableArray(cells);
@@ -52,8 +47,8 @@ function Matrix(config) {
 
 	// keep matrix updated to be the right size
 	this.snoop('size', function(size) {
-		// fill this.cells with new cell objects
-		setLength(thisMatrixInstance.cells, size*size, createCell);
+		// add new Cell objects to this.cells or remove cell objects to ensure a length of size*size
+		setLength(thisMatrixInstance.cells, size*size, Cell);
 
 		// inset fatty acids
 		thisMatrixInstance.insertRandomFattyAcids(getFattyAcidCount());
@@ -94,13 +89,50 @@ Matrix.prototype.insertRandomFattyAcids = function insertRandomFattyAcids(){
 };
 
 
-/*
- ResultDivID = the ID of the div you want to place your results value inside of
- val = the value you want to display
-*/      
+// pick a random cell and see if it's a fatty acid
+Matrix.prototype.findFattyAcid = function findFattyAcid(){
+	var numToInsert = this.fattyAcidCount;
+
+	// reset each cell to be a searching first
+	this.cells.forEach(function(cell) {
+		cell.set('searching', false);
+	});
+
+	var cellI = getRandomIndex(this.cells);
+	var cell = this.cells[cellI];
+	cell.set('searching', true);
 
 
-function updateResultsValue(ResultDivID, val) {
-	var results = document.getElementById(ResultDivID);
-	results.innerHTML = val;
+	var currentSearch = this.searchAttemptsLog[0];
+	currentSearch.set('attempts', currentSearch.attempts + 1);
+
+	if (cell.fattyAcid) {
+		this.foundFattyAcid();
+	}
+};
+
+
+// do special stuff when we find one
+Matrix.prototype.foundFattyAcid = function foundFattyAcid() {
+	// add a new SearchAttempts instance to the beginning of the log
+	this.searchAttemptsLog.unshift(SearchAttempts());
+};
+
+
+
+
+// Search attempts contructor
+
+function SearchAttempts() {
+	// make `new` keyword optional
+	if (!(this instanceof SearchAttempts)) return new SearchAttempts();
+
+	// for Snoopy
+	this.snoopers = {};
+
+	this.attempts = 0;
 }
+
+
+// make each SearchAttempts object observable
+extend(SearchAttempts.prototype, Snoopy.prototype);

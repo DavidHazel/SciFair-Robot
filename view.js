@@ -1,3 +1,8 @@
+/*
+	This file handles everything related to
+	rendering views and handling user events
+*/
+
 
 
 
@@ -66,6 +71,24 @@ var m = new Matrix({
 
 
 /*
+	keep the bubbles in .search-attempts-log in sync with m.searchAttemptsLog
+*/
+
+var searchAttemptsLogList = document.querySelector('.search-attempts-log ol');
+m.searchAttemptsLog.addDomObserver(searchAttemptsLogList, renderAttemptsNum);
+
+function renderAttemptsNum(attemptsObject) {
+	var li = dom({
+		el: 'li',
+		text: attemptsObject.snoop('attempts')
+	});
+	return li;
+}
+
+
+
+
+/*
 	input validation
 */
 
@@ -96,32 +119,18 @@ dom({
 
 
 /*
-	Search for fatty acids
+	hook up "Step" button
 */
 
-// hook up "run experiments" button
-var resultsButton = document.getElementById('runExperiments');
-resultsButton.addEventListener('click', runSimulation);
+var stepButton = document.getElementById('step');
+stepButton.addEventListener('click', continueSearch);
 
-//runs program
-function runSimulation(){
-	// search for fatty acids
-}
-
-
-
-
-/*
-	Shuffle fatty acids
-*/
-
-// hook up "run experiments" button
-var shuffleButton = document.getElementById('shuffle');
-shuffleButton.addEventListener('click', shuffleFattyAcids);
-
-//runs program
-function shuffleFattyAcids(){
+function continueSearch(){
+	// shuffle
 	m.insertRandomFattyAcids();
+
+	// search
+	m.findFattyAcid();
 }
 
 
@@ -134,7 +143,8 @@ function shuffleFattyAcids(){
 function renderCell(cell) {
 	var li = dom({
 		el: 'li',
-		'class_fatty-acid': cell.snoop('fattyAcid')
+		'class_fatty-acid': cell.snoop('fattyAcid'),
+		'class_searching': cell.snoop('searching')
 	});
 	return li;
 }
