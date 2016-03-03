@@ -10,26 +10,28 @@
   
 	
 <div id="new">
-<div class="inputs">
+
+<form class="inputs">
 	<div class="line-item">
 		
 		<label for=MatrixSize> Matrix Size</label>
-		<input id="MatrixSize" type="number" value="10">
+		<input id="MatrixSize" type="number" value="10" max="200">
 		We are only using squares, so single number (i.e. 6 means a 6x6 matrix)
 
 	</div>
 	<div class="line-item">
 		
 		<label for=FattyAcidCount> Fatty Acid Count</label>
-		<input id="FattyAcidCount" type="number" value="10">
+		<input id="FattyAcidCount" type="number" value="10" min="0">
 		how many fatty acids to put in the matrix
 
 	</div>
-</div>
+</form>
 
 
 <div id="results-wrapper">
-<div id="runExperiments" class="button-blue">Run Experiments </div>
+<button id="runExperiments" class="button-blue">Run Experiments</button>
+<button id="shuffle" class="button-blue">Shuffle Fatty Acids</button>
 
 	<div class="line-item">
 		<label> Experiments Summary </label>

@@ -107,21 +107,36 @@ function createCell() {
 
 
 // Matrix constructor
-function Matrix(size) {
-	var thisMatrixInstance = this;
+function Matrix(config) {
+	// required to make instances of this instructor snoopable
 	this.snoopers = {};
-	this.size = size;
-	var cells = fillArray(size * size, createCell);
+
+	// setup config
+	this.size = config.size;
+	this.fattyAcidCount = config.fattyAcidCount;
+
+	// setup array of cells
+	var cells = fillArray(this.size * this.size, createCell);
 
 	// make the array observable so that changes can be observed
 	this.cells = new ObservableArray(cells);
 
+	// cache this matrix instance for use in side the following nested functions which have a different value for `this`
+	var thisMatrixInstance = this;
+
+	// keep matrix updated to be the right size
 	this.snoop('size', function(size) {
 		// fill this.cells with new cell objects
 		setLength(thisMatrixInstance.cells, size*size, createCell);
 
 		// inset fatty acids
 		thisMatrixInstance.insertRandomFattyAcids(getFattyAcidCount());
+	});
+
+	// shuffle fatty acids now and whenever fattyAcidCount changes
+	this.snoop('fattyAcidCount', function() {
+		// insert fatty acids
+		thisMatrixInstance.insertRandomFattyAcids();
 	});
 }
 
@@ -135,7 +150,9 @@ extend(Matrix.prototype, Snoopy.prototype);
 
 
 //puts in fatty acid
-Matrix.prototype.insertRandomFattyAcids = function insertRandomFattyAcids(numToInsert){
+Matrix.prototype.insertRandomFattyAcids = function insertRandomFattyAcids(){
+	var numToInsert = this.fattyAcidCount;
+
 	// reset each cell to be a non-fatty-acid first
 	this.cells.forEach(function(cell) {
 		cell.set('fattyAcid', false);
