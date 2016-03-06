@@ -16,33 +16,31 @@
 			
 			<label for=MatrixSize> Matrix Size</label>
 			<input id="MatrixSize" type="number" value="10" max="200">
-		
-
 		</div>
 			We are only using squares, so single number (i.e. 6 means a 6x6 matrix)
 		<div class="line-item">
-			
 			<label for=FattyAcidCount> Fatty Acid Count</label>
 			<input id="FattyAcidCount" type="number" value="10" min="0">
-			
-
 		</div>
 		how many fatty acids to put in the matrix
+		<div class="line-item">
+			<label for=DelayCount> Delay Count</label>
+			<input id="DelayCount" type="number" value="1000" min="0">
+		</div>
+		delay count in milliseconds (default 1 sec)
 	</form>
 </div>
 
 
 <div id="results-wrapper">
-<button id="step" class="button-blue">Step</button>
-<button id="run" class="button-blue">run</button>
+	<button id="step" class="button-blue">Step</button>
+	<button id="run" class="button-blue">all steps</button>
+	<div class="search-attempts-log">
+		<h3>Search attempts</h3>
+		<ol></ol>
+	</div>
 
-
-<div class="search-attempts-log">
-	<h3>Search attempts</h3>
-	<ol></ol>
-</div>
-
-<div>Source code is available on <a href="https://github.com/DavidHazel/SciFair-Robot">GitHub</a> </div>
+	<div>Source code is available on <a href="https://github.com/DavidHazel/SciFair-Robot">GitHub</a> </div>
 </div>
 	
 <ul class="cell-parent"></ul>

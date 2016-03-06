@@ -55,7 +55,14 @@ function getFattyAcidCount() {
 	return parseInt(fattyAcidCountInput.value, 10);
 }
 
+/*
+delay count input
+*/
+var delayCountInput = document.getElementById('DelayCount');
 
+function getDelayCount(){
+	return parseInt(delayCountInput.value, 10);
+}
 
 
 /*
@@ -122,28 +129,48 @@ runButton.addEventListener('click', searchUntilFound);
 //write run function
 function searchUntilFound(){
 	found = false;
+	delay = getDelayCount(); //in milliseconds
 	// 1.set a timer to 2 sec
 	// 2.every 2 sec fatty acid move 1 square on grid
 	// 3.repeat until fatty acid found
 
 
 
-
-	
+//Johns loop code
 	do {
-		setTimeout(function() {
-		m.insertRandomFattyAcids();
-		}, 10000)
+		setTimeout(function(delay) {
+			m.insertRandomFattyAcids();
+			found = m.findFattyAcid();
+		}, delay)
 		
-		found = m.findFattyAcid();
+		
 		console.log(found);
 	    
 	}
 	while (found == false)
-console.log(found);
+
+
+	
+//Trying to get the loop to slow down.
+	function run(found, delay){
+		if(found == false){
+			m.insertRandomFattyAcids();
+			found = m.findFattyAcid();
+			setTimeout(run(found, delay), delay);
+		}
+		else{
+			console.log(found);
+		}
+	}
+
+	run(found, delay);
+	
+
+	//console.log(found);
 }
 
-
+//starter function to move the fatty acid
+//this will likely be not used
 function mooovingFattyAcid(){
 
 }
