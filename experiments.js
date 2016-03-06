@@ -108,6 +108,10 @@ Matrix.prototype.findFattyAcid = function findFattyAcid(){
 
 	if (cell.fattyAcid) {
 		this.foundFattyAcid();
+		return true;
+	}
+	else {
+		return false;
 	}
 };
 

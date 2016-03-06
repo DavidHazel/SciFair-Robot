@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html>
 <head>
-    <title>Genetic Experiments</title>
+    <title>Search for Fatty Acid's in the Body</title>
     <link rel="stylesheet" type="text/css" href="experiments.css">
 </head>
 <body>
@@ -10,34 +10,39 @@
   
 	
 <div id="new">
-
-<form class="inputs">
-	<div class="line-item">
+<div id="inputs">
+	<form class="inputs">
+		<div class="line-item">
+			
+			<label for=MatrixSize> Matrix Size</label>
+			<input id="MatrixSize" type="number" value="10" max="200">
 		
-		<label for=MatrixSize> Matrix Size</label>
-		<input id="MatrixSize" type="number" value="10" max="200">
-		We are only using squares, so single number (i.e. 6 means a 6x6 matrix)
 
-	</div>
-	<div class="line-item">
-		
-		<label for=FattyAcidCount> Fatty Acid Count</label>
-		<input id="FattyAcidCount" type="number" value="10" min="0">
+		</div>
+			We are only using squares, so single number (i.e. 6 means a 6x6 matrix)
+		<div class="line-item">
+			
+			<label for=FattyAcidCount> Fatty Acid Count</label>
+			<input id="FattyAcidCount" type="number" value="10" min="0">
+			
+
+		</div>
 		how many fatty acids to put in the matrix
-
-	</div>
-</form>
+	</form>
+</div>
 
 
 <div id="results-wrapper">
 <button id="step" class="button-blue">Step</button>
+<button id="run" class="button-blue">run</button>
+
 
 <div class="search-attempts-log">
 	<h3>Search attempts</h3>
 	<ol></ol>
 </div>
 
-<div>Source code is available on <a href="https://github.com/hazelconsulting/SciFair-Genetic">GitHub</a> </div>
+<div>Source code is available on <a href="https://github.com/DavidHazel/SciFair-Robot">GitHub</a> </div>
 </div>
 	
 <ul class="cell-parent"></ul>

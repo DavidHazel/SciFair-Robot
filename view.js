@@ -114,16 +114,49 @@ dom({
 		return Math.ceil(Math.sqrt(fattyAcidCount));
 	})
 });
+//hook up "run" button
+
+var runButton = document.getElementById('run');
+runButton.addEventListener('click', searchUntilFound);
+
+//write run function
+function searchUntilFound(){
+	found = false;
+	// 1.set a timer to 2 sec
+	// 2.every 2 sec fatty acid move 1 square on grid
+	// 3.repeat until fatty acid found
 
 
 
+
+	
+	do {
+		setTimeout(function() {
+		m.insertRandomFattyAcids();
+		}, 10000)
+		
+		found = m.findFattyAcid();
+		console.log(found);
+	    
+	}
+	while (found == false)
+console.log(found);
+}
+
+
+function mooovingFattyAcid(){
+
+}
 
 /*
 	hook up "Step" button
 */
 
+
 var stepButton = document.getElementById('step');
 stepButton.addEventListener('click', continueSearch);
+
+
 
 function continueSearch(){
 	// shuffle

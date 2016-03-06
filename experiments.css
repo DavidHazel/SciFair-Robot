@@ -51,7 +51,12 @@ button {
     color: white;
     border-radius: 100px;
 }
-
+#inputs{
+   padding:30px;
+    width: 45%;
+    margin-right: 30px;
+    float: left;
+}
 #results-wrapper{
 	border:solid 1px grey;
 	background-color:#F0F0F0;
