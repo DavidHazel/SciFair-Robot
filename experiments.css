@@ -24,6 +24,34 @@ button {
 	margin-top:20px;
 }
 
+.search-attempts-log {
+    overflow: hidden;
+}
+
+.search-attempts-log h3, .search-attempts-log ol {
+    display: inline-block;
+}
+
+.search-attempts-log h3 {
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.search-attempts-log ol {
+    list-style: none;
+    padding-left: 0;
+    display: inline;
+}
+
+.search-attempts-log li {
+    display: inline-block;
+    margin: 4px 8px 4px 0;
+    padding: 8px 15px;
+    background: limegreen;
+    color: white;
+    border-radius: 100px;
+}
+
 #results-wrapper{
 	border:solid 1px grey;
 	background-color:#F0F0F0;
@@ -114,6 +142,17 @@ text-align: right;
     box-sizing: border-box;
 }
 
+/* fatty acid */
 .cell-parent li.fatty-acid {
-    background: #f00;
+    background: red;
+}
+
+/* fatty acid being searched */
+.cell-parent li.searching {
+    background: yellow;
+}
+
+/* found fatty acid */
+.cell-parent li.fatty-acid.searching {
+    background: limegreen;
 }
