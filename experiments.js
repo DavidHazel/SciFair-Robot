@@ -17,6 +17,17 @@ function Cell() {
 	this.searching = false;
 }
 
+//John: make array with log headers
+
+var resultsLog = new Array();
+resultsLog.push(new Array('header1', 'header2', 'header3'));
+
+//push new results to the array
+resultsLog.push(new Array('date1', 'time1', 'etc1'));
+resultsLog.push(new Array('date2', 'time2', 'etc2'));
+
+
+
 
 // make each Cell object observable
 extend(Cell.prototype, Snoopy.prototype);
@@ -108,6 +119,7 @@ Matrix.prototype.findFattyAcid = function findFattyAcid(){
 
 	if (cell.fattyAcid) {
 		this.foundFattyAcid();
+		updateResultsBox('date', 'searchtype');
 		return true;
 	}
 	else {
@@ -121,8 +133,6 @@ Matrix.prototype.foundFattyAcid = function foundFattyAcid() {
 	// add a new SearchAttempts instance to the beginning of the log
 	this.searchAttemptsLog.unshift(SearchAttempts());
 };
-
-
 
 
 // Search attempts contructor

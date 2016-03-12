@@ -101,7 +101,7 @@ function renderAttemptsNum(attemptsObject) {
 
 // don't do anything upon form submit (the form is for validation by the browser)
 var configForm = document.getElementById('MatrixSize');
-configForm.addEventListener('submit', function handleConfigFormSubmit(event) {
+	configForm.addEventListener('submit', function handleConfigFormSubmit(event) {
 	event.preventDefault();
 });
 
@@ -137,6 +137,8 @@ function searchUntilFound(){
 
 
 //Johns loop code
+/*
+
 	do {
 		setTimeout(function(delay) {
 			m.insertRandomFattyAcids();
@@ -149,9 +151,11 @@ function searchUntilFound(){
 	}
 	while (found == false)
 
+*/
 
 	
 //Trying to get the loop to slow down.
+
 	function run(found, delay){
 		if(found == false){
 			m.insertRandomFattyAcids();
@@ -164,6 +168,7 @@ function searchUntilFound(){
 	}
 
 	run(found, delay);
+
 	
 
 	//console.log(found);
@@ -191,6 +196,47 @@ function continueSearch(){
 
 	// search
 	m.findFattyAcid();
+}
+
+/**
+
+ Types of searches
+*/
+
+
+function randomSearch(){
+
+}
+
+function intelligentSearch(){
+
+}
+
+function scanSearch(){
+
+}
+
+
+/**
+
+Log results to screen
+
+
+*/
+var resultsBox = document.getElementById('resultsBox');
+resultsBox.innerHTML = "";
+
+
+//function updateResultsBox(date,searchType,gridSize,attempts,movingFattyAcids){
+function updateResultsBox(date,searchType){
+	//load to the results array
+
+
+	//print to the screen
+	console.log("updated");
+	results = date + "," + searchType; //need to finish the rest
+	resultsBox.insertAdjacentHTML('beforeend', results + "</br>");
+
 }
 
 
@@ -221,3 +267,46 @@ function renderCell(cell) {
 	// render and append new cells when they're pushed to m.cells
 	m.cells.addDomObserver(cellParent, renderCell);
 })();
+
+
+
+/*
+
+Ability to export results as a file
+http://stackoverflow.com/questions/21012580/is-it-possible-to-write-data-to-file-using-only-javascript/21016088#21016088
+
+*/
+
+
+var textFile = null;
+  makeTextFile = function (text) {
+
+  	var jsonText = JSON.stringify(text);
+
+    var data = new Blob([jsonText], {type: 'application/json'});
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.
+    if (textFile !== null) {
+      window.URL.revokeObjectURL(textFile);
+    }
+
+    textFile = window.URL.createObjectURL(data);
+
+    return textFile;
+  };
+
+
+  var create = document.getElementById('create'),
+    textbox = document.getElementById('resultsBox');
+
+  create.addEventListener('click', function () {
+    var link = document.getElementById('downloadlink');
+   // link.href = makeTextFile(textbox.innerHTML);
+    link.href = makeTextFile(resultsLog);
+    link.style.display = 'block';
+  }, false);
+
+
+
+
