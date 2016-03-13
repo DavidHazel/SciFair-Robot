@@ -58,12 +58,13 @@ function getFattyAcidCount() {
 /*
 delay count input
 */
+/*
 var delayCountInput = document.getElementById('DelayCount');
 
 function getDelayCount(){
 	return parseInt(delayCountInput.value, 10);
 }
-
+*/
 
 /*
 	initialize matrix object
@@ -90,7 +91,7 @@ function renderAttemptsNum(attemptsObject) {
 		text: attemptsObject.snoop('attempts')
 	});
 	//log the results
-	pushResult(attemptsObject.snoop('attempts'));
+//	pushResult(attemptsObject.snoop('attempts'));
 	return li;
 }
 
@@ -131,7 +132,7 @@ runButton.addEventListener('click', searchUntilFound);
 //write run function
 function searchUntilFound(){
 	found = false;
-	delay = getDelayCount(); //in milliseconds
+	delay = 0;//getDelayCount(); //in milliseconds
 	// 1.set a timer to 2 sec
 	// 2.every 2 sec fatty acid move 1 square on grid
 	// 3.repeat until fatty acid found
