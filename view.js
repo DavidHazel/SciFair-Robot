@@ -134,31 +134,15 @@ function searchUntilFound(){
 	// 2.every 2 sec fatty acid move 1 square on grid
 	// 3.repeat until fatty acid found
 
-
-
-//Johns loop code
-/*
-
-	do {
-		setTimeout(function(delay) {
-			m.insertRandomFattyAcids();
-			found = m.findFattyAcid();
-		}, delay)
-		
-		
-		console.log(found);
-	    
-	}
-	while (found == false)
-
-*/
-
 	
 //Trying to get the loop to slow down.
 
 	function run(found, delay){
 		if(found == false){
-			m.insertRandomFattyAcids();
+			var move = fattyAcidsCanMove();
+			if(move){
+				m.insertRandomFattyAcids();
+			}
 			found = m.findFattyAcid();
 			setTimeout(run(found, delay), delay);
 		}
@@ -174,28 +158,23 @@ function searchUntilFound(){
 	//console.log(found);
 }
 
-//starter function to move the fatty acid
-//this will likely be not used
-function mooovingFattyAcid(){
-
-}
 
 /*
 	hook up "Step" button
 */
-
-
 var stepButton = document.getElementById('step');
 stepButton.addEventListener('click', continueSearch);
 
 
-
 function continueSearch(){
 	// shuffle
-	m.insertRandomFattyAcids();
-
+	var move = fattyAcidsCanMove();
+	if(move){
+		m.insertRandomFattyAcids();
+	}
 	// search
 	m.findFattyAcid();
+	updateResultsBox();
 }
 
 /**
@@ -224,18 +203,18 @@ Log results to screen
 
 */
 var resultsBox = document.getElementById('resultsBox');
-resultsBox.innerHTML = "";
 
 
 //function updateResultsBox(date,searchType,gridSize,attempts,movingFattyAcids){
-function updateResultsBox(date,searchType){
+function updateResultsBox(){
+	resultsBox.innerHTML = "";
 	//load to the results array
-
+	resultsBox.innerHTML = resultsLog.toString();
 
 	//print to the screen
-	console.log("updated");
-	results = date + "," + searchType; //need to finish the rest
-	resultsBox.insertAdjacentHTML('beforeend', results + "</br>");
+	//console.log("updated");
+	//results = date + "," + searchType; //need to finish the rest
+//	resultsBox.insertAdjacentHTML('beforeend', results + "</br>");
 
 }
 
@@ -277,11 +256,11 @@ http://stackoverflow.com/questions/21012580/is-it-possible-to-write-data-to-file
 
 */
 
-
+/*
 var textFile = null;
   makeTextFile = function (text) {
 
-  	var jsonText = JSON.stringify(text);
+  	var jsonText = JSON.parse(text);
 
     var data = new Blob([jsonText], {type: 'application/json'});
 
@@ -295,17 +274,19 @@ var textFile = null;
 
     return textFile;
   };
+  */
 
-
+/*
   var create = document.getElementById('create'),
     textbox = document.getElementById('resultsBox');
 
-  create.addEventListener('click', function () {
+  	create.addEventListener('click', function () {
     var link = document.getElementById('downloadlink');
    // link.href = makeTextFile(textbox.innerHTML);
     link.href = makeTextFile(resultsLog);
     link.style.display = 'block';
   }, false);
+  */
 
 
 

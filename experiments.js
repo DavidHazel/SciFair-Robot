@@ -17,14 +17,58 @@ function Cell() {
 	this.searching = false;
 }
 
-//John: make array with log headers
+//Result constructor
+//stores the values we get from each search result
 
+ function getDate(){
+
+	var timestamp = Date.now();
+	//    console.log(timestamp)
+	date = new Date(timestamp),
+	datevalues = [
+	   date.getFullYear(),
+	   date.getMonth()+1,
+	   date.getDay(),
+	   //date.getHours(),
+	   //date.getMinutes(),
+	   //date.getSeconds(),
+	];
+	return datevalues;
+ }
+
+ function getSearchType(){
+	var searchType = document.getElementById('searchType');
+	return searchType.elements["searchType"].value;
+
+ }
+function fattyAcidsCanMove(){
+	var movingFattyAcid = document.getElementById('movingFattyAcid');
+	return movingFattyAcid.checked;
+}
+
+
+function Result(){
+	if (!(this instanceof Result)) return new Result();
+
+	//TODO: finish making the Result constructor
+	this.date = getDate();
+	this.searchType = getSearchType();
+	this.gridSize = getMatrixSize;
+	this.attempts = null;
+	this.numFattyAcid = config.fattyAcidCount;
+	this.movingFattyAcid = fattyAcidsCanMove();
+}
+
+//initialize the result array
 var resultsLog = new Array();
-resultsLog.push(new Array('header1', 'header2', 'header3'));
 
-//push new results to the array
-resultsLog.push(new Array('date1', 'time1', 'etc1'));
-resultsLog.push(new Array('date2', 'time2', 'etc2'));
+
+function pushResult(date, searchType){
+	result = new Result;
+	result.date = date;
+	result.searchType = searchType;
+	resultsLog.push(result);
+}
 
 
 
@@ -119,7 +163,7 @@ Matrix.prototype.findFattyAcid = function findFattyAcid(){
 
 	if (cell.fattyAcid) {
 		this.foundFattyAcid();
-		updateResultsBox('date', 'searchtype');
+		pushResult('date', 'searchtype');
 		return true;
 	}
 	else {

@@ -3,13 +3,15 @@ body {
 }
 
 #results {
-  border:dashed 1px grey;
-	width:300px;
-	height:300px;
+  
+
     clear:both;
 
 }
 
+#movingFattyAcid{
+    border: dashed 1px red;
+}
 #resultsBox{
     border:dashed 1px red;
         width:300px;
