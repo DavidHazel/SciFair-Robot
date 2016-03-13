@@ -51,9 +51,8 @@ function Result(){
 	if (!(this instanceof Result)) return new Result();
 
 	//TODO: finish making the Result constructor
-	this.date = getDate();
 	this.searchType = getSearchType();
-	this.gridSize = getMatrixSize;
+	this.gridSize = getMatrixSize();
 	this.attempts = null;
 	this.numFattyAcid = getFattyAcidCount();
 	this.movingFattyAcid = fattyAcidsCanMove();

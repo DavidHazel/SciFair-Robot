@@ -277,11 +277,9 @@ var textFile = null;
 
     return textFile;
   };
-  */
 
-/*
   var create = document.getElementById('create'),
-    textbox = document.getElementById('resultsBox');
+  //  textbox = document.getElementById('resultsBox');
 
   	create.addEventListener('click', function () {
     var link = document.getElementById('downloadlink');
@@ -289,7 +287,43 @@ var textFile = null;
     link.href = makeTextFile(resultsLog);
     link.style.display = 'block';
   }, false);
-  */
+*/
+
+
+  var create = document.getElementById('create');
+  //  textbox = document.getElementById('resultsBox');
+
+  	create.addEventListener('click', function () {
+		var csvContent = "data:text/csv;charset=utf-8,\n";
+		csvContent += "searchType,gridSize,attempts,numFattyAcid,movingFattyAcid \n";
+
+		resultsLog.forEach(function(result, index){
+      
+      row =   result.searchType.toString() + ',' 
+            + result.gridSize.toString() + ',' 
+            + result.attempts.toString() + ','
+            + result.numFattyAcid.toString() + ',' 
+            + result.movingFattyAcid.toString();
+ //     console.log(row);
+      csvContent += index < resultsLog.length ? row + "\n" : row;
+
+		}); 
+
+		console.log(csvContent);	
+		var encodedUri = encodeURI(csvContent);
+		window.open(encodedUri);
+  }, false);
+
+
+
+
+
+  	function buildCSV(data){
+  		//var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
+
+		
+  	}
+ 
 
 
 
