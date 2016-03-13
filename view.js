@@ -89,6 +89,8 @@ function renderAttemptsNum(attemptsObject) {
 		el: 'li',
 		text: attemptsObject.snoop('attempts')
 	});
+	//log the results
+	pushResult(attemptsObject.snoop('attempts'));
 	return li;
 }
 

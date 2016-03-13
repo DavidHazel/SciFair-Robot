@@ -55,7 +55,7 @@ function Result(){
 	this.searchType = getSearchType();
 	this.gridSize = getMatrixSize;
 	this.attempts = null;
-	this.numFattyAcid = config.fattyAcidCount;
+	this.numFattyAcid = getFattyAcidCount();
 	this.movingFattyAcid = fattyAcidsCanMove();
 }
 
@@ -63,10 +63,9 @@ function Result(){
 var resultsLog = new Array();
 
 
-function pushResult(date, searchType){
+function pushResult(attempts){
 	result = new Result;
-	result.date = date;
-	result.searchType = searchType;
+	result.attempts = attempts;
 	resultsLog.push(result);
 }
 
@@ -163,7 +162,7 @@ Matrix.prototype.findFattyAcid = function findFattyAcid(){
 
 	if (cell.fattyAcid) {
 		this.foundFattyAcid();
-		pushResult('date', 'searchtype');
+		pushResult(currentSearch.attempts);
 		return true;
 	}
 	else {
