@@ -143,7 +143,7 @@ Matrix.prototype.insertRandomFattyAcids = function insertRandomFattyAcids(){
 
 
 // pick a random cell and see if it's a fatty acid
-Matrix.prototype.findFattyAcid = function findFattyAcid(){
+Matrix.prototype.findFattyAcid = function findFattyAcid(cellI){
 	var numToInsert = this.fattyAcidCount;
 
 	// reset each cell to be a searching first
@@ -151,7 +151,7 @@ Matrix.prototype.findFattyAcid = function findFattyAcid(){
 		cell.set('searching', false);
 	});
 
-	var cellI = getRandomIndex(this.cells);
+	//var cellI = getRandomIndex(this.cells);
 	var cell = this.cells[cellI];
 	cell.set('searching', true);
 
@@ -168,6 +168,9 @@ Matrix.prototype.findFattyAcid = function findFattyAcid(){
 		return false;
 	}
 };
+
+
+
 
 
 // do special stuff when we find one

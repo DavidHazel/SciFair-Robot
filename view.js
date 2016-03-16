@@ -140,21 +140,35 @@ function searchUntilFound(){
 	
 //Trying to get the loop to slow down.
 
-	function run(found, delay){
+	function run(found, delay, count){
+		//var cellI = getRandomIndex(m.cells);
+		//var cellI = 0;
+
+		var searchType = getSearchType();
+
+
+
+		if (searchType=='RandomSearch'){
+			 count = getRandomIndex(m.cells);
+		}
+
 		if(found == false){
 			var move = fattyAcidsCanMove();
 			if(move){
 				m.insertRandomFattyAcids();
 			}
-			found = m.findFattyAcid();
-			setTimeout(run(found, delay), delay);
+
+			found = m.findFattyAcid(count);
+			 count = count + 1;
+		
+			setTimeout(run(found, delay, count), delay);
 		}
 		else{
 			console.log(found);
 		}
 	}
-
-	run(found, delay);
+	var count = 0;
+	run(found, delay, count);
 
 	
 
@@ -196,6 +210,12 @@ function intelligentSearch(){
 
 function scanSearch(){
 
+}
+
+function BBSearch(){
+			for (var i = 0; i < handlers.length; i++) {
+						el.addEventListener(eventName, handlers[i], false);
+					}
 }
 
 
