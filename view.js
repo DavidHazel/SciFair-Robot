@@ -158,9 +158,23 @@ function searchUntilFound(){
 				m.insertRandomFattyAcids();
 			}
 
-			found = m.findFattyAcid(count);
+
+	if (searchType=='IntelligentSearch' && count > 1){
+
+		found = m.findFattyAcid(count, true)| m.findFattyAcid(count + 1, false) |  m.findFattyAcid(count - 1, false);	
+		}
+ 		else{
+
+			found = m.findFattyAcid(count, true);
+ 		}
+			
+
+
+
+
 			 count = count + 1;
 		
+
 			setTimeout(run(found, delay, count), delay);
 		}
 		else{
@@ -170,7 +184,11 @@ function searchUntilFound(){
 	var count = 0;
 	run(found, delay, count);
 
+
+	var found2 = false
 	
+
+	var found3 = false
 
 	//console.log(found);
 }

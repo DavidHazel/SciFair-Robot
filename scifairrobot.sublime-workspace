@@ -1,0 +1,773 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"search",
+				"search"
+			],
+			[
+				"result",
+				"resultsLog"
+			],
+			[
+				"att",
+				"attempts"
+			],
+			[
+				"s",
+				"search"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"re",
+				"results"
+			],
+			[
+				"matr",
+				"matrixsize"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 3752,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "experiments.css",
+			"settings":
+			{
+				"buffer_size": 2607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "experiments.js",
+			"settings":
+			{
+				"buffer_size": 4682,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "helpers.js",
+			"settings":
+			{
+				"buffer_size": 1884,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "view.js",
+			"settings":
+			{
+				"buffer_size": 7068,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DOM-Builder/.git",
+			"settings":
+			{
+				"buffer_size": 36,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 33 files for \"log\"\n\n/workspacessd/SciFair-Robot/dbconn.php:\n   21  create database genetics;\n   22  use genetics;\n   23: CREATE TABLE log (timestamp int,\n   24                    ipAddress CHAR(50),\n   25                    sampleSize int,\n\n/workspacessd/SciFair-Robot/DOM-Builder/README.md:\n   24  	// listen to events:\n   25  	on_change: function() {\n   26: 	    console.log(this.checked);\n   27  	}\n   28  });\n\n/workspacessd/SciFair-Robot/experiments.css:\n   25  }\n   26  \n   27: .search-attempts-log {\n   28      overflow: hidden;\n   29  }\n   30  \n   31: .search-attempts-log h3, .search-attempts-log ol {\n   32      display: inline-block;\n   33  }\n   34  \n   35: .search-attempts-log h3 {\n   36      margin-right: 10px;\n   37      margin-bottom: 0;\n   38  }\n   39  \n   40: .search-attempts-log ol {\n   41      list-style: none;\n   42      padding-left: 0;\n   ..\n   44  }\n   45  \n   46: .search-attempts-log li {\n   47      display: inline-block;\n   48      margin: 4px 8px 4px 0;\n\n/workspacessd/SciFair-Robot/experiments.js:\n    1  /**\n    2: 	core program logic\n    3  */\n    4  \n    .\n   35  \n   36  	// set up search attempts observable array with a prefilled instance of SearchAttempts()\n   37: 	this.searchAttemptsLog = new ObservableArray([SearchAttempts()]);\n   38  \n   39  	// setup array of cells\n   ..\n  104  \n  105  \n  106: 	var currentSearch = this.searchAttemptsLog[0];\n  107  	currentSearch.set('attempts', currentSearch.attempts + 1);\n  108  \n  ...\n  119  // do special stuff when we find one\n  120  Matrix.prototype.foundFattyAcid = function foundFattyAcid() {\n  121: 	// add a new SearchAttempts instance to the beginning of the log\n  122: 	this.searchAttemptsLog.unshift(SearchAttempts());\n  123  };\n  124  \n\n/workspacessd/SciFair-Robot/index.html:\n   36  	<button id=\"step\" class=\"button-blue\">Step</button>\n   37  	<button id=\"run\" class=\"button-blue\">all steps</button>\n   38: 	<div class=\"search-attempts-log\">\n   39  		<h3>Search attempts</h3>\n   40  		<ol></ol>\n   ..\n   50  	<button id=\"create\">Generate Export File</button>\n   51  	<a download=\"info.txt\" id=\"downloadlink\" style=\"display: none\">Export Results</a>\n   52: 	<textarea id=\"textbox\">Results Log</textarea>\n   53  \n   54  </div>\n   ..\n   71  \n   72  \n   73: <!-- jQuery is not used since the JS that posted to log.php was removed -->\n   74  <!-- <script src=\"http://code.jquery.com/jquery-1.11.0.min.js\"></script> -->\n   75  \n   ..\n   88  <script src=\"DOM-Builder/dom.js\"></script>\n   89  \n   90: <!-- core program logic -->\n   91  <script type=\"text/javascript\" src=\"experiments.js\"></script>\n   92  \n\n/workspacessd/SciFair-Robot/log.php:\n    1  <?php\n    2  \n    3: //file for logging experiment results\n    4  \n    5  //Include the DB connection string\n    .\n   19   \n   20  //Prepare the query\n   21: $stmt = $mysqli->prepare(\"INSERT INTO log VALUES (?,?,?, ?, ?, ?, ?)\");\n   22  $stmt->bind_param('dsddddd', $timestamp, $ipAddress, $sampleSize, $count_x_blue_x_green, $count_x_green_x_green, $count_x_blue_y_naked, $count_x_green_y_naked);\n   23  \n\n/workspacessd/SciFair-Robot/observable-array/bower_components/subscribable.js/README.md:\n   21  \n   22  Daniel.on('puke', function(event, msg) {\n   23: 	console.log('Eeeww! ' + msg);\n   24  });\n   25  \n   ..\n   40  Person.prototype = new Subscribable();\n   41  Person.prototype.sayName = function() {\n   42: 	console.log('Hi! I\\'m ' + this.name + '.');\n   43  };\n   44  \n   ..\n   49  \n   50  Daniel.on('smile', function showTeeth(event, numTeeth) {\n   51: 	console.log('Oh look! ' + this.name + ' has ' + numTeeth + ' teeth.');\n   52  });\n   53  \n\n/workspacessd/SciFair-Robot/observable-array/bower_components/subscribable.js/test.js:\n   56  	stat.complete++;\n   57  	stat[test[testName] ? 'pass' : 'fail']++;\n   58: 	if (!test[testName]) console.log('test \"%s\" failed.', testName);\n   59  }\n   60: console.log('%d assertions completed. %d passed, and %d failed.', stat.complete, stat.pass, stat.fail);\n\n/workspacessd/SciFair-Robot/observable-array/index.html:\n   22  <h3>Get notified when it changes</h3>\n   23  <script style=\"display: block; white-space: pre;\">nums.on('push', function() {\n   24: 	console.log('this: ', this, '\\narguments: ', arguments);\n   25  });</script>\n   26  \n\n/workspacessd/SciFair-Robot/snoopy/README.md:\n   17  });\n   18  \n   19: // log: \"3 is odd.\" or \"0 is even.\"\n   20  counter.snoop('even', function(even) {\n   21: 	console.log(this.counter + ' is ' + (even ? 'even' : 'odd') + '.');\n   22  });\n   23  ```\n   ..\n   55  ```js\n   56  person.snoop('firstName')(function snooper(name) {\n   57: 	console.log('name is now ' + name);\n   58  })\n   59  ```\n   ..\n   63  ```js\n   64  person.snoop('firstName', function snooper(name) {\n   65: 	console.log('name is now ' + name);\n   66  })\n   67  ```\n   ..\n   73  	return firstName + ' ' + lastName;\n   74  })(function snooper(name) {\n   75: 	console.log('name is now ' + name);\n   76  })\n   77  ```\n\n/workspacessd/SciFair-Robot/view.js:\n   79  \n   80  /*\n   81: 	keep the bubbles in .search-attempts-log in sync with m.searchAttemptsLog\n   82  */\n   83  \n   84: var searchAttemptsLogList = document.querySelector('.search-attempts-log ol');\n   85: m.searchAttemptsLog.addDomObserver(searchAttemptsLogList, renderAttemptsNum);\n   86  \n   87  function renderAttemptsNum(attemptsObject) {\n   ..\n  147  		\n  148  		\n  149: 		console.log(found);\n  150  	    \n  151  	}\n  ...\n  164  		}\n  165  		else{\n  166: 			console.log(found);\n  167  		}\n  168  	}\n  ...\n  172  	\n  173  \n  174: 	//console.log(found);\n  175  }\n  176  \n\n39 matches across 11 files\n\n\nSearching 33 files for \"search-attempts\"\n\n/workspacessd/SciFair-Robot/experiments.css:\n   25  }\n   26  \n   27: .search-attempts-log {\n   28      overflow: hidden;\n   29  }\n   30  \n   31: .search-attempts-log h3, .search-attempts-log ol {\n   32      display: inline-block;\n   33  }\n   34  \n   35: .search-attempts-log h3 {\n   36      margin-right: 10px;\n   37      margin-bottom: 0;\n   38  }\n   39  \n   40: .search-attempts-log ol {\n   41      list-style: none;\n   42      padding-left: 0;\n   ..\n   44  }\n   45  \n   46: .search-attempts-log li {\n   47      display: inline-block;\n   48      margin: 4px 8px 4px 0;\n\n/workspacessd/SciFair-Robot/index.html:\n   36  	<button id=\"step\" class=\"button-blue\">Step</button>\n   37  	<button id=\"run\" class=\"button-blue\">all steps</button>\n   38: 	<div class=\"search-attempts-log\">\n   39  		<h3>Search attempts</h3>\n   40  		<ol></ol>\n\n/workspacessd/SciFair-Robot/view.js:\n   79  \n   80  /*\n   81: 	keep the bubbles in .search-attempts-log in sync with m.searchAttemptsLog\n   82  */\n   83  \n   84: var searchAttemptsLogList = document.querySelector('.search-attempts-log ol');\n   85  m.searchAttemptsLog.addDomObserver(searchAttemptsLogList, renderAttemptsNum);\n   86  \n\n9 matches across 3 files\n\n\nSearching 33 files for \"ScanSearch\"\n\n/workspacessd/SciFair-Robot/index.html:\n   23  	<input type=\"radio\" name=\"searchType\" value=\"RandomSearch\" checked=\"true\">Random Search<br>\n   24  	<input type=\"radio\" name=\"searchType\" value=\"IntelligentSearch\" disabled=\"true\">Intelligent Search<br>\n   25: 	<input type=\"radio\" name=\"searchType\" value=\"ScanSearch\" disabled=\"true\">block-by-block search\n   26  	\n   27  </form>\n\n/workspacessd/SciFair-Robot/view.js:\n  195  }\n  196  \n  197: function scanSearch(){\n  198  \n  199  }\n\n2 matches across 2 files\n\n\nSearching 33 files for \"step\"\n\n/workspacessd/SciFair-Robot/index.html:\n   55  \n   56  <div id=\"results-wrapper\">\n   57: 	<button id=\"step\" class=\"button-blue\">Step</button>\n   58: 	<button id=\"run\" class=\"button-blue\">all steps</button>\n   59  	<div class=\"search-attempts-log\">\n   60  		<h3>Search attempts</h3>\n\n/workspacessd/SciFair-Robot/view.js:\n  164  \n  165  /*\n  166: 	hook up \"Step\" button\n  167  */\n  168: var stepButton = document.getElementById('step');\n  169: stepButton.addEventListener('click', continueSearch);\n  170  \n  171  \n\n7 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 7925,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/workspacessd/SciFair-Robot",
+		"/workspacessd/SciFair-Robot/DOM-Builder",
+		"/workspacessd/SciFair-Robot/observable-array",
+		"/workspacessd/SciFair-Robot/py",
+		"/workspacessd/SciFair-Robot/snoopy"
+	],
+	"file_history":
+	[
+		"/workspacessd/SciFair-Robot/README.md",
+		"/workspacessd/healthscope/aco/index.html",
+		"/workspacessd/healthscope/js/dropdown-menu.js",
+		"/workspacessd/healthscope/php/scoreData.php",
+		"/workspacessd/kdd2015/calls.html",
+		"/workspacessd/healthscope/php/performAnalysis.php",
+		"/workspacessd/healthscope/hscope.sublime-project",
+		"/workspacessd/healthscope/php/readBack.php",
+		"/workspacessd/healthscope/js/acocost.js",
+		"/workspacessd/healthscope/aco/js/dropdown-menu.js",
+		"/workspacessd/healthscope/aco/acocost.html",
+		"/workspacessd/healthscope/json/parsed.json",
+		"/workspacessd/healthscope/aco/js/carecost.js",
+		"/workspacessd/healthscope/aco/js/acocost.js",
+		"/workspacessd/healthscope/aco/css/app-header-styles.css",
+		"/workspacessd/healthscope/aco/css/acocost.css",
+		"/workspacessd/healthscope/phpGet.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/workspacessd/SciFair-Robot",
+			"/workspacessd/healthscope",
+			"/workspacessd/healthscope/aco/js",
+			"/workspacessd/healthscope",
+			"/workspacessd/healthscope/aco/css",
+			"/workspacessd/healthscope",
+			"/workspacessd/healthscope/aco/css",
+			"/workspacessd/healthscope"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"step",
+			"ScanSearch",
+			"search-attempts",
+			"log",
+			"results",
+			"continuesearch",
+			"snoopy",
+			"totalcostchange",
+			"uploadfileopenscoring",
+			"hideBrowse",
+			"clicksample",
+			"nav-pills",
+			"Population",
+			"clicksample",
+			"agetime",
+			"Chronic Conditions",
+			"age",
+			"VisitLink",
+			"$(\"#change\").show();",
+			"hide",
+			"$(\"#change\")",
+			"uploadFileopenscoring",
+			"clicksample",
+			"costBreakdown",
+			"none",
+			"totalcosts",
+			"totalPopulation",
+			"cost",
+			"display: none",
+			"totalcosts",
+			"totalCosts",
+			"totalpopulation",
+			"ppce",
+			"prediction_stats"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3752,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								240,
+								240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "experiments.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "experiments.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4682,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4126,
+								4126
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1652.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "helpers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1884,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								443,
+								443
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "view.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3602,
+								3615
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 816.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "DOM-Builder/.git",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 36,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7925,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										144,
+										147
+									],
+									[
+										383,
+										386
+									],
+									[
+										510,
+										513
+									],
+									[
+										586,
+										589
+									],
+									[
+										611,
+										614
+									],
+									[
+										695,
+										698
+									],
+									[
+										805,
+										808
+									],
+									[
+										918,
+										921
+									],
+									[
+										1072,
+										1075
+									],
+									[
+										1234,
+										1237
+									],
+									[
+										1390,
+										1393
+									],
+									[
+										1661,
+										1664
+									],
+									[
+										1692,
+										1695
+									],
+									[
+										1942,
+										1945
+									],
+									[
+										2194,
+										2197
+									],
+									[
+										2312,
+										2315
+									],
+									[
+										2517,
+										2520
+									],
+									[
+										2681,
+										2684
+									],
+									[
+										2845,
+										2848
+									],
+									[
+										3217,
+										3220
+									],
+									[
+										3373,
+										3376
+									],
+									[
+										3521,
+										3524
+									],
+									[
+										3803,
+										3806
+									],
+									[
+										3863,
+										3866
+									],
+									[
+										4164,
+										4167
+									],
+									[
+										4317,
+										4320
+									],
+									[
+										4412,
+										4415
+									],
+									[
+										4587,
+										4590
+									],
+									[
+										4729,
+										4732
+									],
+									[
+										4878,
+										4881
+									],
+									[
+										5028,
+										5031
+									],
+									[
+										5061,
+										5064
+									],
+									[
+										5108,
+										5111
+									],
+									[
+										5159,
+										5162
+									],
+									[
+										5192,
+										5195
+									],
+									[
+										5225,
+										5228
+									],
+									[
+										5357,
+										5360
+									],
+									[
+										5442,
+										5445
+									],
+									[
+										5516,
+										5519
+									],
+									[
+										5687,
+										5702
+									],
+									[
+										5763,
+										5778
+									],
+									[
+										5788,
+										5803
+									],
+									[
+										5872,
+										5887
+									],
+									[
+										5982,
+										5997
+									],
+									[
+										6095,
+										6110
+									],
+									[
+										6373,
+										6388
+									],
+									[
+										6533,
+										6548
+									],
+									[
+										6664,
+										6679
+									],
+									[
+										7152,
+										7162
+									],
+									[
+										7297,
+										7307
+									],
+									[
+										7489,
+										7493
+									],
+									[
+										7515,
+										7519
+									],
+									[
+										7578,
+										7582
+									],
+									[
+										7742,
+										7746
+									],
+									[
+										7776,
+										7780
+									],
+									[
+										7814,
+										7818
+									],
+									[
+										7829,
+										7833
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								7816,
+								7816
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 4,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ 	].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3548.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.xdebug":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "scifairrobot.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 281.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
