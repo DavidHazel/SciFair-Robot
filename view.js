@@ -145,9 +145,6 @@ function searchUntilFound(){
 		//var cellI = 0;
 
 		var searchType = getSearchType();
-
-
-
 		if (searchType=='RandomSearch'){
 			 count = getRandomIndex(m.cells);
 		}
@@ -157,38 +154,21 @@ function searchUntilFound(){
 			if(move){
 				m.insertRandomFattyAcids();
 			}
-
-
-	if (searchType=='IntelligentSearch' && count > 1){
-
-		found = m.findFattyAcid(count, true)| m.findFattyAcid(count + 1, false) |  m.findFattyAcid(count - 1, false);	
-		}
- 		else{
-
-			found = m.findFattyAcid(count, true);
- 		}
-			
-
-
-
-
-			 count = count + 1;
-		
-
+			if (doYouWantIntelligentSearch() && count > 1){
+				found = m.findFattyAcid(count, true)| m.findFattyAcid(count + 1, false) |  m.findFattyAcid(count - 1, false);	
+				}
+		 		else{
+					found = m.findFattyAcid(count, true);
+		 		}
+			count = count + 1;
 			setTimeout(run(found, delay, count), delay);
 		}
-		else{
-			console.log(found);
+			else{
+				console.log(found);
+			}
 		}
-	}
 	var count = 0;
 	run(found, delay, count);
-
-
-	var found2 = false
-	
-
-	var found3 = false
 
 	//console.log(found);
 }

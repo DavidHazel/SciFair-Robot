@@ -47,6 +47,12 @@ function fattyAcidsCanMove(){
 }
 
 
+
+function doYouWantIntelligentSearch(){
+	var IntelligentSearch = document.getElementById('IntelligentSearch');
+	return IntelligentSearch.checked;
+}
+
 function Result(){
 	if (!(this instanceof Result)) return new Result();
 
